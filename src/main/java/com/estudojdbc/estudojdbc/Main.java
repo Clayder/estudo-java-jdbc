@@ -8,6 +8,7 @@ package com.estudojdbc.estudojdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -19,7 +20,7 @@ public class Main{
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Loaded");
@@ -34,7 +35,9 @@ public class Main{
             e.printStackTrace();
         }
         if(connection != null){
-            System.out.println("Conectado");
+            Statement statement = connection.createStatement();
+            String sql = "CREATE TABLE IF NOT EXISTS movie (id INTEGER NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
+            statement.executeUpdate(sql);
         }else{
             System.err.println("Erro");
         }
