@@ -33,6 +33,7 @@ public class Main {
 
         switch (choice) {
             case 1:
+                Connection con = new ConnectionFactory().getConnection();
                 break;
             case 2:
                 break;
