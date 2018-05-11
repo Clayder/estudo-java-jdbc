@@ -9,38 +9,43 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.Scanner;
 
 /**
  *
  * @author peter
  */
-public class Main{
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Loaded");
-        }catch(ClassNotFoundException e){
-            System.out.println("cFailed to load");
-            e.printStackTrace();
+        System.out.println("--------- Menu ---------");
+        System.out.println("1 - List movies");
+        System.out.println("2 - Create new movie");
+        System.out.println("3 - Update a movie");
+        System.out.println("4 - Delete a movie");
+        System.out.println("--------- Menu ---------");
+
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
-        Connection connection = null;
-        try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/estudo_jdbc?serverTimezone=UTC", "root", "p1p2ls");
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        if(connection != null){
-            Statement statement = connection.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS movie (id INTEGER NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
-            statement.executeUpdate(sql);
-        }else{
-            System.err.println("Erro");
-        }
+
+        SetupDatabase banco = new SetupDatabase();
+        banco.start();
     }
- 
+
 }
