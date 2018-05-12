@@ -66,6 +66,16 @@ public class Main {
 
                 break;
             case 4:
+                System.out.println("Enter movie id: ");
+                Integer idDelete = scanner.nextInt();
+                
+                Movie movieDelete = dao.findById(idDelete);
+                
+                if(movieDelete != null){
+                    dao.remove(movieDelete);
+                }else{
+                    System.out.println("Does not exists");
+                }
                 break;
             default:
                 System.out.println("Opção inválida.");
