@@ -22,6 +22,11 @@ public class MovieDAO {
         connection = new ConnectionFactory().getConnection();
     }
     
+    /**
+     * 
+     * @return
+     * @throws SQLException 
+     */
     public List<Movie> findAll() throws SQLException{
         String query = "SELECT * FROM " + TABELA;
         List<Movie> movies= new ArrayList<>();
@@ -29,11 +34,10 @@ public class MovieDAO {
         ResultSet res = statement.executeQuery();
         
         while(res.next()){
-            Movie x = new Movie(1, "qwq");
             movies.add(new Movie(res.getInt("id"), res.getString("name")));
         }
         
-        return null;
+        return movies;
     }
     
     public void insert(Movie movie){
