@@ -20,17 +20,11 @@ public class Movie {
     
     /**
      * 
+     * @param id
      * @param name 
      */
-    Movie(String name){
+    Movie(Integer id, String name){
         this.name = name;
-    }
-    
-    /**
-     * 
-     * @param id 
-     */
-    Movie(Integer id){
         this.id = id;
     }
 
