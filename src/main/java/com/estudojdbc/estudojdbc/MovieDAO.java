@@ -42,6 +42,25 @@ public class MovieDAO {
     
     /**
      * 
+     * @return
+     * @throws SQLException 
+     */
+    public Movie findById(Integer id) throws SQLException{
+        String query = "SELECT * FROM " + TABELA + " WHERE (id) = ?" ;
+        statement = connection.prepareStatement(query);
+        statement.setInt(1, id);
+        ResultSet res = statement.executeQuery();
+        
+        Movie movie = null;
+        
+        while(res.next()){
+            movie = new Movie(res.getInt("id"), res.getString("name"));
+        }
+        return movie;
+    }
+    
+    /**
+     * 
      * @param movie
      * @throws SQLException 
      */
