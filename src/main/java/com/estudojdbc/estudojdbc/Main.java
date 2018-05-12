@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,6 +18,7 @@ import java.util.Scanner;
  */
 public class Main {
 
+    private static Connection CONNECTION = null;
     /**
      * @param args the command line arguments
      */
@@ -29,13 +31,23 @@ public class Main {
         System.out.println("--------- Menu ---------");
 
         Scanner scanner = new Scanner(System.in);
+        CONNECTION = new ConnectionFactory().getConnection();
         int choice = scanner.nextInt();
+        MovieDAO dao = new MovieDAO();
 
         switch (choice) {
             case 1:
-                Connection con = new ConnectionFactory().getConnection();
+                System.out.println("1 - List movies");
+                ArrayList<Movie> data = (ArrayList<Movie>) dao.findAll();
+                for (Movie movie : data) {
+                    System.out.println("Id: " + movie.getId());
+                    System.out.println("Name: " + movie.getName());
+                }
                 break;
             case 2:
+                System.out.println("2 - Enter name");
+                String name = scanner.next();
+                dao.insert(new Movie(name));
                 break;
             case 3:
                 break;
@@ -45,8 +57,6 @@ public class Main {
                 System.out.println("Opção inválida.");
         }
 
-        SetupDatabase banco = new SetupDatabase();
-        banco.start();
     }
 
 }
