@@ -53,8 +53,12 @@ public class MovieDAO {
         statement.execute();
     }
     
-    public void update(Movie movieOld, Movie movieNew){
-        
+    public void update(Movie movieOld, Movie movieNew) throws SQLException{
+        String query = "UPDATE " + TABELA + " SET name = ? WHERE id = ?";
+        statement = connection.prepareStatement(query);
+        statement.setString(1, movieNew.getName());
+        statement.setInt(2, movieNew.getId());
+        statement.execute();
     }
     
     /**
