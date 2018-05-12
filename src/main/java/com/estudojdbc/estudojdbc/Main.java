@@ -50,6 +50,20 @@ public class Main {
                 dao.insert(new Movie(name));
                 break;
             case 3:
+                System.out.println("Enter movie id: ");
+                Integer id = scanner.nextInt();
+                
+                Movie movieExists = dao.findById(id);
+                
+                if(movieExists != null){
+                    System.out.println("Enter nwe movie name: ");
+                    String movieName = scanner.next();
+                    Movie movieNew = new Movie(movieExists.getId(), movieName);
+                    dao.update(movieExists, movieNew);
+                }else{
+                    System.out.println("Does not exists");
+                }
+
                 break;
             case 4:
                 break;
