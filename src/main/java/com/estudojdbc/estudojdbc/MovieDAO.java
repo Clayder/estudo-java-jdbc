@@ -40,8 +40,17 @@ public class MovieDAO {
         return movies;
     }
     
-    public void insert(Movie movie){
+    /**
+     * 
+     * @param movie
+     * @throws SQLException 
+     */
+    public void insert(Movie movie) throws SQLException{
+        String query = "INSERT INTO "+ TABELA + " (name) VALUE (?)";
         
+        statement = connection.prepareStatement(query);
+        statement.setString(1, movie.getName());
+        statement.execute();
     }
     
     public void update(Movie movieOld, Movie movieNew){
