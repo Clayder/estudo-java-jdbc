@@ -28,6 +28,10 @@ public class Movie {
         this.id = id;
     }
 
+    Movie(String name) {
+        this.name = name;
+    }
+
     /**
      * 
      * @return Integer
