@@ -57,7 +57,16 @@ public class MovieDAO {
         
     }
     
-    public void remove(Movie movie){
+    /**
+     * 
+     * @param movie
+     * @throws SQLException 
+     */
+    public void remove(Movie movie) throws SQLException{
+        String query = "DELETE FROM " + TABELA + " WHERE id = ?";
         
+        statement = connection.prepareStatement(query);
+        statement.setInt(1, movie.getId());
+        statement.execute();
     }
 }
